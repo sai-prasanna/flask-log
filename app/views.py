@@ -1,6 +1,7 @@
-from flask import render_template, redirect
-from app import app
+from flask import render_template, redirect, request
+from app import app, db, models
 from forms import PostForm
+import datetime
 
 
 @app.route('/')
@@ -27,10 +28,15 @@ def post():
     pass
 
 
-@app.route('/new', methods=['GET', 'POST'])
-def new():
+@app.route('/post/new', methods=['GET', 'POST'])
+def post_new():
     form = PostForm()
     if form.validate_on_submit():
-        print form
+        title = form.title
+        post = form.post
+        timestamp = datetime.datetime.utcnow()
+        p = models.Post(title=title, body=post, timestamp=timestamp)
+        db.session.add(p)
+        db.session.commit()
         return redirect('/index')
     return render_template('create-post.html', form=form)
