@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-
-{% endfor %}
+<h1>Create Post</h1>
+<form action="" method="post" name="create">
+    {{form.hidden_tag()}}
+    <table>
+        <tr>
+            <td>Title</td>
+            <td>{{form.title(size = 24)}}</td>
+           <td>
+{% for error in form.errors.title %}
+    <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}</td>
+        </tr>
+        <tr>
+            <td>Post</td>
+            <td>{{form.post}}</td>
+            <td> 
+{% for error in form.errors.post %}
+    <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Post"></td>
+        </tr>
+    </table>
+</form>
 {% endblock %}

@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, redirect
 from app import app
+from forms import PostForm
 
 
 @app.route('/')
@@ -26,6 +27,10 @@ def post():
     pass
 
 
-@app.route('/create/')
-def create():
-    pass
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+    form = PostForm()
+    if form.validate_on_submit():
+        print form
+        return redirect('/index')
+    return render_template('create-post.html', form=form)
