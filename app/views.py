@@ -32,10 +32,10 @@ def post():
 def post_new():
     form = PostForm()
     if form.validate_on_submit():
-        title = form.title
-        post = form.post
+        title = form.title.data
+        body = form.post.data
         timestamp = datetime.datetime.utcnow()
-        p = models.Post(title=title, body=post, timestamp=timestamp)
+        p = models.Post(title=title, body=body, timestamp=timestamp)
         db.session.add(p)
         db.session.commit()
         return redirect('/index')
