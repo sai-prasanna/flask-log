@@ -2,7 +2,7 @@
 {% block content %}
 
 {% for post in posts %}
-<h2><a href="">{{post.title}}</a></h2>
+<h2><a href="{{url_for('view_post',slug = post.slug)}}">{{post.title}}</a></h2>
 <em>Created on {{post.timestamp}}</em>
 <br><br>
 <p>

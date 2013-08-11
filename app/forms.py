@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form, TextField, TextAreaField 
-from flask.ext.wtf import Required, Length
+from flask.ext.wtf import Required
 
 
 class PostForm(Form):
