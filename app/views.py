@@ -10,12 +10,12 @@ def index():
     return render_template("index.html", posts=posts)
 
 
-@app.route('/post/<id>')
+@app.route('/post/<id>/')
 @app.route('/post/<id>/<slug>')
 def view_post(id, slug=None):
     post = models.Post.query.get_or_404(id)
     if post.slug != slug:
-        return redirect(url_for('post', id=id, slug=post.slug))
+        return redirect(url_for('view_post', id=id, slug=post.slug))
     return render_template("post.html", post=post)
 
 
