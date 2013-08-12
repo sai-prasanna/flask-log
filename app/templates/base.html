@@ -16,12 +16,23 @@
   <ul class="nav navbar-nav">
     <li class="active"><a href="#">Home</a></li>
     <li><a href="#">About me</a></li>
-    <li><a href="post/new">New Post</a></li>
+    <li><a href="{{url_for('post_new')}}">New Post</a></li>
 
 
   </ul>
   </div>
   <br><br><br><br>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>
+        <div class="alert alert-info">{{ message }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+   {% endif %}
+   {% endwith %}
     {% block content %}{% endblock %}
 </div>
 </body>

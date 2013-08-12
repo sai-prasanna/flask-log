@@ -1,12 +1,22 @@
 from app import db
-
+from datetime import datetime
+from slugify import slugify
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
-    slug = db.Column(db.String(255), unique=True)
+    slug = db.Column(db.String(255))
     body = db.Column(db.String)
     timestamp = db.Column(db.DateTime)
+
+    def __init__(self, title, body):
+        self.title = title
+        self.slug = slugify(title)
+        self.body = body
+        self.timestamp = datetime.utcnow()
+
+    def __repr__(self):
+        return '<Post %r>' % (self.slug)
 
     def __unicode__(self):
         return self.title

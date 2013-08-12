@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+{% import 'macros.html' as macros %}
 
 {% for post in posts %}
-<h2><a href="{{url_for('view_post',slug = post.slug)}}">{{post.title}}</a></h2>
+<h2>{{macros.post_anchor(post.id,post.slug,post.title)}}</h2>
 <em>Created on {{post.timestamp}}</em>
 <br><br>
 <p>

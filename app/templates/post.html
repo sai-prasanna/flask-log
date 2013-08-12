@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{post.title}}</h2>
+<h2>{{post.title}}</h2><br>
 <em>Created on {{post.timestamp}}  </em>
-<a href="{{url_for('view_post',slug=post.slug)}}">permalink</a>
 <br><br>
 <p>
 {{post.body}}

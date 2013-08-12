@@ -1,0 +1,3 @@
+{% macro post_anchor(id,slug,title) -%}
+<a href="{{ url_for('view_post', id=id, slug=slug) }}">{{ title }}</a>
+{%- endmacro %}
