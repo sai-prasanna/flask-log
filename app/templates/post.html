@@ -1,10 +1,27 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h2>{{post.title}}</h2><br>
+<h3>{{post.title}}</h3><br>
 <em>Created on {{post.timestamp}}  </em>
 <br><br>
 <p>
 {{post.body}}
 </p>
 <br>
+
+<h4>Comments:</h4>
+{% for comment in post.comments %}
+<p>{{comment.body}}</p><br><br>
+    {% endfor %}
+
+<h4>Comment Form</h4>
+<form action="" method="post" name="comment">
+    {{comment_form.hidden_tag()}}
+    {{comment_form.body}}
+    {% for error in comment_form.errors.body %}
+    <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}<br>
+    <input type="submit" value="Comment"></td>
+</form>
+
 {% endblock %}

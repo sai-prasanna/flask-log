@@ -8,6 +8,8 @@ class Post(db.Model):
     slug = db.Column(db.String(255))
     body = db.Column(db.String)
     timestamp = db.Column(db.DateTime)
+    comments = db.relationship('Comment', backref='post',
+                                lazy='dynamic')
 
     def __init__(self, title, body):
         self.title = title
@@ -20,3 +22,8 @@ class Post(db.Model):
 
     def __unicode__(self):
         return self.title
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(500))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
